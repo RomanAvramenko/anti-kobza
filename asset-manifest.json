@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/anti-kobza/static/css/main.073c9b0a.css",
+    "main.js": "/anti-kobza/static/js/main.711d0b6c.js",
+    "index.html": "/anti-kobza/index.html",
+    "main.073c9b0a.css.map": "/anti-kobza/static/css/main.073c9b0a.css.map",
+    "main.711d0b6c.js.map": "/anti-kobza/static/js/main.711d0b6c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.711d0b6c.js"
+  ]
+}
