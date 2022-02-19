@@ -1,8 +1,9 @@
 import { validWords } from "./words";
 import { useState } from "react";
-import "./App.css";
 import { Select } from "./components/Select/Select";
 import { Input } from "./components/Input/Input";
+import { Pagination } from "./components/Pagination/Pagination";
+import "./App.css";
 
 function App() {
   const [included, setIncluded] = useState("");
@@ -26,8 +27,8 @@ function App() {
   };
 
   const handleIncorect = (item) => {
-    setIncorrectPosition(item)
-  }
+    setIncorrectPosition(item);
+  };
 
   const filteredArray = (array, incArr, unInclArr) => {
     if (incArr.length < 1 || unInclArr.length < 1) {
@@ -70,12 +71,8 @@ function App() {
   return (
     <div className="App">
       <Input handleInput={handleInput} handleSecondInput={handleSecondInput} />
-      <Select handleCallback={handleCallback} handleIncorect={handleIncorect}/>
-      <ol>
-        {array.map((i) => (
-          <li key={Math.random()}>{i}</li>
-        ))}
-      </ol>
+      <Select handleCallback={handleCallback} handleIncorect={handleIncorect} />
+      <Pagination itemsPerPage={40} items={array} />
     </div>
   );
 }

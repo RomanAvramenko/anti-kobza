@@ -87,6 +87,7 @@ export const Select = ({ handleCallback, handleIncorect }) => {
         </select>
         <input type="button" value="додати" onClick={handleSelect} />
       </div>
+
       <div>
         <span>Точно не ця позиція: </span>
         <select

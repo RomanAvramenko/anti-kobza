@@ -1,0 +1,28 @@
+.pagination {
+  position: fixed;
+  bottom: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  background-color: aliceblue;
+  padding: 0;
+  width: 100vw;
+}
+
+.pagination > li {
+  margin: 0 0.5em;
+  height: 26px;
+  width: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination > li:hover {
+  cursor: pointer;
+}
+
+.pagination > li.selected {
+  border: 1px black solid;
+  border-radius: 50%;
+}
