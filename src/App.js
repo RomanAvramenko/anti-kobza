@@ -1,5 +1,5 @@
 import { validWords } from "./words";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Select } from "./components/Select/Select";
 import { Input } from "./components/Input/Input";
 import { Pagination } from "./components/Pagination/Pagination";
@@ -10,9 +10,10 @@ function App() {
   const [unincluded, setUnincluded] = useState("");
   const [correctPosition, setCorrectPosition] = useState([]);
   const [incorrectPosition, setIncorrectPosition] = useState([]);
+  const [filtered, setFiltered] = useState([]);
 
-  let include = Array.from(included);
-  let notInclude = Array.from(unincluded);
+  const include = Array.from(included);
+  const notInclude = Array.from(unincluded);
 
   const handleInput = (value) => {
     setIncluded(value);
@@ -30,8 +31,8 @@ function App() {
     setIncorrectPosition(item);
   };
 
-  const filteredArray = (array, incArr, unInclArr) => {
-    if (incArr.length < 1 || unInclArr.length < 1) {
+  const filteredArray = (array, incArr, unInclArr, corPosit, incorPosit) => {
+    if (incArr.length < 1 && unInclArr.length < 1) {
       return array;
     }
 
@@ -39,20 +40,20 @@ function App() {
       array = array.filter((i) => i.includes(incArr[index]));
     }
 
-    for (let index = 0; index < correctPosition.length; index++) {
+    for (let index = 0; index < corPosit.length; index++) {
       array = array.filter((i) => {
-        if (correctPosition[index].length > 0) {
-          return i[index] === correctPosition[index];
+        if (corPosit[index].length > 0) {
+          return i[index] === corPosit[index];
         } else {
           return i[index];
         }
       });
     }
 
-    for (let index = 0; index < incorrectPosition.length; index++) {
+    for (let index = 0; index < incorPosit.length; index++) {
       array = array.filter((i) => {
-        if (incorrectPosition[index].length > 0) {
-          return i[index] !== incorrectPosition[index];
+        if (incorPosit[index].length > 0) {
+          return i[index] !== incorPosit[index];
         } else {
           return i[index];
         }
@@ -66,13 +67,37 @@ function App() {
     return array;
   };
 
-  const array = filteredArray(validWords, include, notInclude);
+  const dependencyes = [
+    include.length,
+    notInclude.length,
+    correctPosition[0],
+    correctPosition[1],
+    correctPosition[2],
+    correctPosition[3],
+    correctPosition[4],
+    incorrectPosition[0],
+    incorrectPosition[1],
+    incorrectPosition[2],
+    incorrectPosition[3],
+    incorrectPosition[4],
+  ];
+
+  useEffect(() => {
+    const filterArr = filteredArray(
+      validWords,
+      include,
+      notInclude,
+      correctPosition,
+      incorrectPosition
+    );
+    setFiltered(filterArr);
+  }, dependencyes);
 
   return (
     <div className="App">
       <Input handleInput={handleInput} handleSecondInput={handleSecondInput} />
       <Select handleCallback={handleCallback} handleIncorect={handleIncorect} />
-      <Pagination itemsPerPage={40} items={array} />
+      <Pagination itemsPerPage={40} items={filtered} />
     </div>
   );
 }
