@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/anti-kobza/static/css/main.222c841c.css",
-    "main.js": "/anti-kobza/static/js/main.3b4ee611.js",
+    "main.js": "/anti-kobza/static/js/main.2ebdaa79.js",
     "index.html": "/anti-kobza/index.html",
     "main.222c841c.css.map": "/anti-kobza/static/css/main.222c841c.css.map",
-    "main.3b4ee611.js.map": "/anti-kobza/static/js/main.3b4ee611.js.map"
+    "main.2ebdaa79.js.map": "/anti-kobza/static/js/main.2ebdaa79.js.map"
   },
   "entrypoints": [
     "static/css/main.222c841c.css",
-    "static/js/main.3b4ee611.js"
+    "static/js/main.2ebdaa79.js"
   ]
 }
