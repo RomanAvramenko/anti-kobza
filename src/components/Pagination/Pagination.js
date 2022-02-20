@@ -4,7 +4,6 @@ import { Items } from "../Items/Items";
 import "./Pagination.css";
 
 export const Pagination = ({ itemsPerPage, items }) => {
-  console.log(items.length)
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);

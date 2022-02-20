@@ -1,5 +1,5 @@
 export const letters = [
-  ' ',
+  '',
   "а",
   "б",
   "в",

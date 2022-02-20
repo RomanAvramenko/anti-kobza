@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { letters } from "../../letters";
 
 export const Select = ({ handleCallback, handleIncorect }) => {
@@ -14,13 +14,13 @@ export const Select = ({ handleCallback, handleIncorect }) => {
   const [four, setFour] = useState("");
   const [five, setFive] = useState("");
 
-  const handleSelect = () => {
+  useEffect(() => {
     handleCallback([first, second, third, fourth, fifth]);
-  };
+  }, [first, second, third, fourth, fifth]);
 
-  const handleIncorrectSelect = () => {
+  useEffect(() => {
     handleIncorect([one, two, three, four, five]);
-  };
+  }, [one, two, three, four, five]);
 
   return (
     <>
@@ -85,7 +85,6 @@ export const Select = ({ handleCallback, handleIncorect }) => {
             </option>
           ))}
         </select>
-        <input type="button" value="додати" onClick={handleSelect} />
       </div>
 
       <div>
@@ -149,7 +148,6 @@ export const Select = ({ handleCallback, handleIncorect }) => {
             </option>
           ))}
         </select>
-        <input type="button" value="додати" onClick={handleIncorrectSelect} />
       </div>
     </>
   );
