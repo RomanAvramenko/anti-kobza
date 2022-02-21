@@ -32,10 +32,6 @@ function App() {
   };
 
   const filteredArray = (array, incArr, unInclArr, corPosit, incorPosit) => {
-    if (incArr.length < 1 && unInclArr.length < 1) {
-      return array;
-    }
-
     for (let index = 0; index < incArr.length; index++) {
       array = array.filter((i) => i.includes(incArr[index]));
     }
@@ -97,7 +93,7 @@ function App() {
     <div className="App">
       <Input handleInput={handleInput} handleSecondInput={handleSecondInput} />
       <Select handleCallback={handleCallback} handleIncorect={handleIncorect} />
-      <Pagination itemsPerPage={40} items={filtered} />
+      <Pagination itemsPerPage={45} items={filtered} />
     </div>
   );
 }

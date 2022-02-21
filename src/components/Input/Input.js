@@ -1,43 +1,50 @@
 import React, { useEffect, useState } from "react";
+import "./Input.css";
 
 export const Input = ({ handleInput, handleSecondInput }) => {
-  const [value, setValue] = useState("");
-  const [secondInput, setsecondInput] = useState("");
-
-  /* const sortedOne = Array.from(value);
-  const sortedTwo = Array.from(secondInput);
-
-  const contained = sortedOne.some(
-    (el) => el === sortedTwo[sortedTwo.length - 1]
-  ); */
+  const [included, setIncluded] = useState("");
+  const [secondInput, setUnincluded] = useState("");
 
   useEffect(() => {
-    handleInput(value.toLowerCase());
-  }, [value.length]);
+    handleInput(included.toLowerCase());
+  }, [included.length]);
 
   useEffect(() => {
     handleSecondInput(secondInput.toLowerCase());
   }, [secondInput.length]);
 
+  const handleIncludedLetters = (e) => {
+    if (e.target.value.match("^[А-ЩЬЮЯҐЄІЇа-щьюяґєії]*$") != null) {
+      setIncluded(e.target.value);
+    }
+  };
+
+  const handleUnincludedLetters = (e) => {
+    if (e.target.value.match("^[А-ЩЬЮЯҐЄІЇа-щьюяґєії]*$") != null) {
+      setUnincluded(e.target.value);
+    }
+  };
+
   return (
     <>
+      <span>Букви які є</span>
       <form action="">
-        <label htmlFor="included">Букви які є: </label>
         <input
+          className="textInputs"
           type="text"
           id="included"
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
+          value={included}
+          onChange={handleIncludedLetters}
         />
       </form>
-
+      <span>Букви яких немає</span>
       <form action="">
-        <label htmlFor="unincluded">Букви яких немає: </label>
         <input
+          className="textInputs"
           type="text"
           id="unincluded"
           value={secondInput}
-          onChange={(event) => setsecondInput(event.target.value)}
+          onChange={handleUnincludedLetters}
         />
       </form>
     </>

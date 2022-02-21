@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { letters } from "../../letters";
+import "./Select.css";
 
 export const Select = ({ handleCallback, handleIncorect }) => {
   const [first, setFirst] = useState("");
@@ -15,140 +15,117 @@ export const Select = ({ handleCallback, handleIncorect }) => {
   const [five, setFive] = useState("");
 
   useEffect(() => {
-    handleCallback([first, second, third, fourth, fifth]);
+    handleCallback([
+      first.toLowerCase(),
+      second.toLowerCase(),
+      third.toLowerCase(),
+      fourth.toLowerCase(),
+      fifth.toLowerCase(),
+    ]);
   }, [first, second, third, fourth, fifth]);
 
   useEffect(() => {
-    handleIncorect([one, two, three, four, five]);
+    handleIncorect([
+      one.toLowerCase(),
+      two.toLowerCase(),
+      three.toLowerCase(),
+      four.toLowerCase(),
+      five.toLowerCase(),
+    ]);
   }, [one, two, three, four, five]);
+
+  const pipeValue = (value, fn) => {
+    if (value.match("^[А-ЩЬЮЯҐЄІЇа-щьюяґєії]*$") != null) {
+      fn(value.substring(0, 1).toLowerCase());
+    }
+  };
 
   return (
     <>
-      <div>
-        <span>Точно відома позиція: </span>
-        <select
-          name="select1"
+      <span>Точно відома позиція</span>
+      <form>
+        <input
+          className="selectedInputs"
+          name="input1"
           value={first}
-          onChange={(event) => setFirst(event.target.value)}
-        >
-          {letters.map((i) => (
-            <option value={i} key={i}>
-              {i}
-            </option>
-          ))}
-        </select>
+          onChange={(event) => pipeValue(event.target.value, setFirst)}
+          maxLength="1"
+        />
 
-        <select
-          name="select2"
+        <input
+          className="selectedInputs"
+          name="input2"
           value={second}
-          onChange={(event) => setSecond(event.target.value)}
-        >
-          {letters.map((i) => (
-            <option value={i} key={i}>
-              {i}
-            </option>
-          ))}
-        </select>
+          onChange={(event) => pipeValue(event.target.value, setSecond)}
+          maxLength="1"
+        />
 
-        <select
-          name="select3"
+        <input
+          className="selectedInputs"
+          name="input3"
           value={third}
-          onChange={(event) => setThird(event.target.value)}
-        >
-          {letters.map((i) => (
-            <option value={i} key={i}>
-              {i}
-            </option>
-          ))}
-        </select>
+          onChange={(event) => pipeValue(event.target.value, setThird)}
+          maxLength="1"
+        />
 
-        <select
-          name="select4"
+        <input
+          className="selectedInputs"
+          name="input4"
           value={fourth}
-          onChange={(event) => setFourth(event.target.value)}
-        >
-          {letters.map((i) => (
-            <option value={i} key={i}>
-              {i}
-            </option>
-          ))}
-        </select>
+          onChange={(event) => pipeValue(event.target.value, setFourth)}
+          maxLength="1"
+        />
 
-        <select
-          name="select5"
+        <input
+          className="selectedInputs"
+          name="input5"
           value={fifth}
-          onChange={(event) => setFifth(event.target.value)}
-        >
-          {letters.map((i) => (
-            <option value={i} key={i}>
-              {i}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <span>Точно не ця позиція: </span>
-        <select
+          onChange={(event) => pipeValue(event.target.value, setFifth)}
+          maxLength="1"
+        />
+      </form>
+      <span>Точно не ця позиція</span>
+      <form>
+        <input
+          className="selectedInputs"
           name="1"
           value={one}
-          onChange={(event) => setOne(event.target.value)}
-        >
-          {letters.map((i) => (
-            <option value={i} key={i}>
-              {i}
-            </option>
-          ))}
-        </select>
+          onChange={(event) => pipeValue(event.target.value, setOne)}
+          maxLength="1"
+        />
 
-        <select
+        <input
+          className="selectedInputs"
           name="2"
           value={two}
-          onChange={(event) => setTwo(event.target.value)}
-        >
-          {letters.map((i) => (
-            <option value={i} key={i}>
-              {i}
-            </option>
-          ))}
-        </select>
+          onChange={(event) => pipeValue(event.target.value, setTwo)}
+          maxLength="1"
+        />
 
-        <select
+        <input
+          className="selectedInputs"
           name="3"
           value={three}
-          onChange={(event) => setThree(event.target.value)}
-        >
-          {letters.map((i) => (
-            <option value={i} key={i}>
-              {i}
-            </option>
-          ))}
-        </select>
+          onChange={(event) => pipeValue(event.target.value, setThree)}
+          maxLength="1"
+        />
 
-        <select
+        <input
+          className="selectedInputs"
           name="4"
           value={four}
-          onChange={(event) => setFour(event.target.value)}
-        >
-          {letters.map((i) => (
-            <option value={i} key={i}>
-              {i}
-            </option>
-          ))}
-        </select>
+          onChange={(event) => pipeValue(event.target.value, setFour)}
+          maxLength="1"
+        />
 
-        <select
+        <input
+          className="selectedInputs"
           name="5"
           value={five}
-          onChange={(event) => setFive(event.target.value)}
-        >
-          {letters.map((i) => (
-            <option value={i} key={i}>
-              {i}
-            </option>
-          ))}
-        </select>
-      </div>
+          onChange={(event) => pipeValue(event.target.value, setFive)}
+          maxLength="1"
+        />
+      </form>
     </>
   );
 };
