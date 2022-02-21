@@ -14,12 +14,14 @@ export const Input = ({ handleInput, handleSecondInput }) => {
   }, [secondInput.length]);
 
   const handleIncludedLetters = (e) => {
+    e.preventDefault();
     if (e.target.value.match("^[А-ЩЬЮЯҐЄІЇа-щьюяґєії]*$") != null) {
       setIncluded(e.target.value);
     }
   };
 
   const handleUnincludedLetters = (e) => {
+    e.preventDefault();
     if (e.target.value.match("^[А-ЩЬЮЯҐЄІЇа-щьюяґєії]*$") != null) {
       setUnincluded(e.target.value);
     }
@@ -33,7 +35,7 @@ export const Input = ({ handleInput, handleSecondInput }) => {
           className="textInputs"
           type="text"
           id="included"
-          value={included}
+          value={included.toUpperCase()}
           onChange={handleIncludedLetters}
         />
       </form>
@@ -43,7 +45,7 @@ export const Input = ({ handleInput, handleSecondInput }) => {
           className="textInputs"
           type="text"
           id="unincluded"
-          value={secondInput}
+          value={secondInput.toUpperCase()}
           onChange={handleUnincludedLetters}
         />
       </form>

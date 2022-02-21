@@ -1,7 +1,20 @@
-.selectedInputs{
+.selectedInputs {
   width: 1.5em;
   height: 1.5em;
   text-align: center;
   font-size: 1.5em;
   font-weight: 600;
+  background-color: #110127;
+  color: #fefefe;
+  border: #110127;
+  border-radius: 5px;
+  margin: 3px;
+}
+
+.notEmptyCorrect {
+  background-color: #5aa164;
+}
+
+.notEmptyIncorrect {
+  background-color: #c5a436;
 }

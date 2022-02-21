@@ -1,11 +1,12 @@
 .pagination {
   position: fixed;
+  margin: 0;
   bottom: 0;
   list-style: none;
   display: flex;
   justify-content: center;
-  background-color: aliceblue;
-  padding: 0;
+  background-color: #342540;
+  padding: 1em;
   width: 100vw;
 }
 
@@ -23,6 +24,6 @@
 }
 
 .pagination > li.selected {
-  border: 1px black solid;
+  border: 1px rgb(255, 255, 255) solid;
   border-radius: 50%;
 }

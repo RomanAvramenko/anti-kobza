@@ -38,8 +38,8 @@ function App() {
 
     for (let index = 0; index < corPosit.length; index++) {
       array = array.filter((i) => {
-        if (corPosit[index].length > 0) {
-          return i[index] === corPosit[index];
+        if (corPosit[index].value.length > 0) {
+          return i[index] === corPosit[index].value;
         } else {
           return i[index];
         }
@@ -48,8 +48,8 @@ function App() {
 
     for (let index = 0; index < incorPosit.length; index++) {
       array = array.filter((i) => {
-        if (incorPosit[index].length > 0) {
-          return i[index] !== incorPosit[index];
+        if (incorPosit[index].value.length > 0) {
+          return i[index] !== incorPosit[index].value;
         } else {
           return i[index];
         }

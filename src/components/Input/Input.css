@@ -1,4 +1,10 @@
-.textInputs{
+.textInputs {
   height: 1.5em;
   font-size: 1.5em;
+  background-color: #110127;
+  color: #fefefe;
+  border: #110127;
+  border-radius: 5px;
+  letter-spacing: .3rem;
+  padding: 0 .3rem;
 }

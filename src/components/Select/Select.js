@@ -2,41 +2,55 @@ import React, { useEffect, useState } from "react";
 import "./Select.css";
 
 export const Select = ({ handleCallback, handleIncorect }) => {
-  const [first, setFirst] = useState("");
-  const [second, setSecond] = useState("");
-  const [third, setThird] = useState("");
-  const [fourth, setFourth] = useState("");
-  const [fifth, setFifth] = useState("");
+  const [correct, setCorrect] = useState([
+    { name: "first", value: "", empty: true },
+    { name: "second", value: "", empty: true },
+    { name: "third", value: "", empty: true },
+    { name: "fourth", value: "", empty: true },
+    { name: "fifth", value: "", empty: true },
+  ]);
 
-  const [one, setOne] = useState("");
-  const [two, setTwo] = useState("");
-  const [three, setThree] = useState("");
-  const [four, setFour] = useState("");
-  const [five, setFive] = useState("");
+  const [inCorrect, setInCorrect] = useState([
+    { name: "first", value: "", empty: true },
+    { name: "second", value: "", empty: true },
+    { name: "third", value: "", empty: true },
+    { name: "fourth", value: "", empty: true },
+    { name: "fifth", value: "", empty: true },
+  ]);
+
+  const correctDependencies = [
+    correct[0].value,
+    correct[1].value,
+    correct[2].value,
+    correct[3].value,
+    correct[4].value,
+  ];
 
   useEffect(() => {
-    handleCallback([
-      first.toLowerCase(),
-      second.toLowerCase(),
-      third.toLowerCase(),
-      fourth.toLowerCase(),
-      fifth.toLowerCase(),
-    ]);
-  }, [first, second, third, fourth, fifth]);
+    handleCallback(correct);
+  }, [correctDependencies]);
+
+  const inCorrectDependencies = [
+    inCorrect[0].value,
+    inCorrect[1].value,
+    inCorrect[2].value,
+    inCorrect[3].value,
+    inCorrect[4].value,
+  ];
 
   useEffect(() => {
-    handleIncorect([
-      one.toLowerCase(),
-      two.toLowerCase(),
-      three.toLowerCase(),
-      four.toLowerCase(),
-      five.toLowerCase(),
-    ]);
-  }, [one, two, three, four, five]);
+    handleIncorect(inCorrect);
+  }, [inCorrectDependencies]);
 
-  const pipeValue = (value, fn) => {
+  const pipeValue = (value, array, fn, name) => {
     if (value.match("^[А-ЩЬЮЯҐЄІЇа-щьюяґєії]*$") != null) {
-      fn(value.substring(0, 1).toLowerCase());
+      fn(
+        array.map((i) =>
+          i.name === name
+            ? { ...i, value: value.toLowerCase(), empty: false }
+            : i
+        )
+      );
     }
   };
 
@@ -44,87 +58,43 @@ export const Select = ({ handleCallback, handleIncorect }) => {
     <>
       <span>Точно відома позиція</span>
       <form>
-        <input
-          className="selectedInputs"
-          name="input1"
-          value={first}
-          onChange={(event) => pipeValue(event.target.value, setFirst)}
-          maxLength="1"
-        />
-
-        <input
-          className="selectedInputs"
-          name="input2"
-          value={second}
-          onChange={(event) => pipeValue(event.target.value, setSecond)}
-          maxLength="1"
-        />
-
-        <input
-          className="selectedInputs"
-          name="input3"
-          value={third}
-          onChange={(event) => pipeValue(event.target.value, setThird)}
-          maxLength="1"
-        />
-
-        <input
-          className="selectedInputs"
-          name="input4"
-          value={fourth}
-          onChange={(event) => pipeValue(event.target.value, setFourth)}
-          maxLength="1"
-        />
-
-        <input
-          className="selectedInputs"
-          name="input5"
-          value={fifth}
-          onChange={(event) => pipeValue(event.target.value, setFifth)}
-          maxLength="1"
-        />
+        {correct.map((i) => {
+          const styled =
+            i.value.length > 0
+              ? "selectedInputs notEmptyCorrect"
+              : "selectedInputs";
+          return (
+            <input
+              key={i.name}
+              className={styled}
+              value={i.value.toUpperCase()}
+              onChange={(event) =>
+                pipeValue(event.target.value, correct, setCorrect, i.name)
+              }
+              maxLength="1"
+            />
+          );
+        })}
       </form>
       <span>Точно не ця позиція</span>
       <form>
-        <input
-          className="selectedInputs"
-          name="1"
-          value={one}
-          onChange={(event) => pipeValue(event.target.value, setOne)}
-          maxLength="1"
-        />
-
-        <input
-          className="selectedInputs"
-          name="2"
-          value={two}
-          onChange={(event) => pipeValue(event.target.value, setTwo)}
-          maxLength="1"
-        />
-
-        <input
-          className="selectedInputs"
-          name="3"
-          value={three}
-          onChange={(event) => pipeValue(event.target.value, setThree)}
-          maxLength="1"
-        />
-
-        <input
-          className="selectedInputs"
-          name="4"
-          value={four}
-          onChange={(event) => pipeValue(event.target.value, setFour)}
-          maxLength="1"
-        />
-
-        <input
-          className="selectedInputs"
-          name="5"
-          value={five}
-          onChange={(event) => pipeValue(event.target.value, setFive)}
-          maxLength="1"
-        />
+        {inCorrect.map((i) => {
+          const styled =
+            i.value.length > 0
+              ? "selectedInputs notEmptyIncorrect"
+              : "selectedInputs";
+          return (
+            <input
+              key={i.name}
+              className={styled}
+              value={i.value.toUpperCase()}
+              onChange={(event) =>
+                pipeValue(event.target.value, inCorrect, setInCorrect, i.name)
+              }
+              maxLength="1"
+            />
+          );
+        })}
       </form>
     </>
   );
