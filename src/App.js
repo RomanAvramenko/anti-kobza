@@ -37,6 +37,8 @@ function App() {
     setIncorrectPosition(item);
   };
 
+  //console.log(correctPosition);
+
   const dependencyes = [
     validWords,
     include.length,
