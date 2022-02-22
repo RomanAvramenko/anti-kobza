@@ -3,19 +3,19 @@ import "./Select.css";
 
 export const Select = ({ handleCallback, handleIncorect }) => {
   const [correct, setCorrect] = useState([
-    { name: "first", value: "", empty: true },
-    { name: "second", value: "", empty: true },
-    { name: "third", value: "", empty: true },
-    { name: "fourth", value: "", empty: true },
-    { name: "fifth", value: "", empty: true },
+    { name: "first", value: "" },
+    { name: "second", value: "" },
+    { name: "third", value: "" },
+    { name: "fourth", value: "" },
+    { name: "fifth", value: "" },
   ]);
 
   const [inCorrect, setInCorrect] = useState([
-    { name: "first", value: "", empty: true },
-    { name: "second", value: "", empty: true },
-    { name: "third", value: "", empty: true },
-    { name: "fourth", value: "", empty: true },
-    { name: "fifth", value: "", empty: true },
+    { name: "first", value: "" },
+    { name: "second", value: "" },
+    { name: "third", value: "" },
+    { name: "fourth", value: "" },
+    { name: "fifth", value: "" },
   ]);
 
   const correctDependencies = [
@@ -46,9 +46,7 @@ export const Select = ({ handleCallback, handleIncorect }) => {
     if (value.match("^[А-ЩЬЮЯҐЄІЇа-щьюяґєії]*$") != null) {
       fn(
         array.map((i) =>
-          i.name === name
-            ? { ...i, value: value.toLowerCase(), empty: false }
-            : i
+          i.name === name ? { ...i, value: value.toLowerCase() } : i
         )
       );
     }

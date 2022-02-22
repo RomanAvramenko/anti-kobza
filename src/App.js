@@ -4,6 +4,12 @@ import { Select } from "./components/Select/Select";
 import { Input } from "./components/Input/Input";
 import { Pagination } from "./components/Pagination/Pagination";
 import "./App.css";
+import {
+  filterCorrectPosition,
+  filterIncludedLetters,
+  filterIncorrectPosition,
+  filterUnincludedLetters,
+} from "./helpers/filters";
 
 function App() {
   const [included, setIncluded] = useState("");
@@ -31,39 +37,8 @@ function App() {
     setIncorrectPosition(item);
   };
 
-  const filteredArray = (array, incArr, unInclArr, corPosit, incorPosit) => {
-    for (let index = 0; index < incArr.length; index++) {
-      array = array.filter((i) => i.includes(incArr[index]));
-    }
-
-    for (let index = 0; index < corPosit.length; index++) {
-      array = array.filter((i) => {
-        if (corPosit[index].value.length > 0) {
-          return i[index] === corPosit[index].value;
-        } else {
-          return i[index];
-        }
-      });
-    }
-
-    for (let index = 0; index < incorPosit.length; index++) {
-      array = array.filter((i) => {
-        if (incorPosit[index].value.length > 0) {
-          return i[index] !== incorPosit[index].value;
-        } else {
-          return i[index];
-        }
-      });
-    }
-
-    for (let index = 0; index < unInclArr.length; index++) {
-      array = array.filter((i) => !i.includes(unInclArr[index]));
-    }
-
-    return array;
-  };
-
   const dependencyes = [
+    validWords,
     include.length,
     notInclude.length,
     correctPosition[0],
@@ -79,14 +54,14 @@ function App() {
   ];
 
   useEffect(() => {
-    const filterArr = filteredArray(
-      validWords,
-      include,
-      notInclude,
-      correctPosition,
-      incorrectPosition
-    );
-    setFiltered(filterArr);
+    let filterArr = validWords;
+    filterArr = filterIncludedLetters(filterArr, include);
+    filterArr = filterUnincludedLetters(filterArr, notInclude);
+    filterArr = filterCorrectPosition(filterArr, correctPosition);
+    filterArr = filterIncorrectPosition(filterArr, incorrectPosition);
+    if (filterArr) {
+      setFiltered(filterArr);
+    }
   }, dependencyes);
 
   return (
