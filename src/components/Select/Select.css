@@ -1,4 +1,8 @@
-.selectedInputs {
+.selected-form{
+  display: flex;
+}
+
+.selected-inputs {
   width: 1.5em;
   height: 1.5em;
   text-align: center;

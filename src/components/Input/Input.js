@@ -30,23 +30,25 @@ export const Input = ({ handleInput, handleSecondInput }) => {
   return (
     <>
       <span>Букви які є</span>
-      <form action="">
+      <form>
         <input
           className="textInputs"
           type="text"
           id="included"
           value={included.toUpperCase()}
           onChange={handleIncludedLetters}
+          onKeyPress={(e) => e.key === "Enter" && e.preventDefault()}
         />
       </form>
       <span>Букви яких немає</span>
-      <form action="">
+      <form>
         <input
           className="textInputs"
           type="text"
           id="unincluded"
           value={secondInput.toUpperCase()}
           onChange={handleUnincludedLetters}
+          onKeyPress={(e) => e.key === "Enter" && e.preventDefault()}
         />
       </form>
     </>

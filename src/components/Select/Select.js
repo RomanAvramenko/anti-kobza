@@ -57,17 +57,18 @@ export const Select = ({ handleCallback, handleIncorect }) => {
   return (
     <>
       <span>Точно відома позиція</span>
-      <form>
+      <form className="selected-form">
         {correct.map((i) => {
           const styled =
             i.value.length > 0
-              ? "selectedInputs notEmptyCorrect"
-              : "selectedInputs";
+              ? "selected-inputs notEmptyCorrect"
+              : "selected-inputs";
           return (
             <input
               key={i.name}
               className={styled}
               value={i.value.toUpperCase()}
+              type="text"
               onChange={(event) =>
                 pipeValue(event.target.value, correct, setCorrect, i.name)
               }
@@ -77,17 +78,18 @@ export const Select = ({ handleCallback, handleIncorect }) => {
         })}
       </form>
       <span>Точно не ця позиція</span>
-      <form>
+      <form className="selected-form">
         {inCorrect.map((i) => {
           const styled =
             i.value.length > 0
-              ? "selectedInputs notEmptyIncorrect"
-              : "selectedInputs";
+              ? "selected-inputs notEmptyIncorrect"
+              : "selected-inputs";
           return (
             <input
               key={i.name}
               className={styled}
               value={i.value.toUpperCase()}
+              type="text"
               onChange={(event) =>
                 pipeValue(event.target.value, inCorrect, setInCorrect, i.name)
               }
